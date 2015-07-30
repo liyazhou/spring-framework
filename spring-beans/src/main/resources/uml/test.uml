@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA" name="test">
+  <packagedElement xmi:type="uml:Package" xmi:id="_VVKnETR7EeWnYOLSrhSJRg" name="org">
+    <packagedElement xmi:type="uml:Package" xmi:id="_VVKnEjR7EeWnYOLSrhSJRg" name="springframework">
+      <packagedElement xmi:type="uml:Package" xmi:id="_VVKnEzR7EeWnYOLSrhSJRg" name="beans">
+        <packagedElement xmi:type="uml:Package" xmi:id="_VVL1MDR7EeWnYOLSrhSJRg" name="factory">
+          <packagedElement xmi:type="uml:Package" xmi:id="_VVMcQDR7EeWnYOLSrhSJRg" name="support">
+            <packagedElement xmi:type="uml:Class" xmi:id="_VVNqYDR7EeWnYOLSrhSJRg" name="DefaultListableBeanFactory" clientDependency="_VWLTsTR7EeWnYOLSrhSJRg _VXC2YTR7EeWnYOLSrhSJRg _VXC2YzR7EeWnYOLSrhSJRg">
+              <ownedComment xmi:id="_VVRUwDR7EeWnYOLSrhSJRg">
+                <body>/** 
+ * Default implementation of the{@link org.springframework.beans.factory.ListableBeanFactory} and{@link BeanDefinitionRegistry} interfaces: a full-fledged bean factory
+ * based on bean definition objects.
+ * &lt;p>Typical usage is registering all bean definitions first (possibly read
+ * from a bean definition file), before accessing beans. Bean definition lookup
+ * is therefore an inexpensive operation in a local bean definition table,
+ * operating on pre-built bean definition metadata objects.
+ * &lt;p>Can be used as a standalone bean factory, or as a superclass for custom
+ * bean factories. Note that readers for specific bean definition formats are
+ * typically implemented separately rather than as bean factory subclasses:
+ * see for example {@link PropertiesBeanDefinitionReader} and{@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}.
+ * &lt;p>For an alternative implementation of the{@link org.springframework.beans.factory.ListableBeanFactory} interface,
+ * have a look at {@link StaticListableBeanFactory}, which manages existing
+ * bean instances rather than creating new ones based on bean definitions.
+ * @author Rod Johnson
+ * @author Juergen Hoeller
+ * @author Sam Brannen
+ * @author Costin Leau
+ * @author Chris Beams
+ * @author Phillip Webb
+ * @since 16 April 2001
+ * @see StaticListableBeanFactory
+ * @see PropertiesBeanDefinitionReader
+ * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+ */
+</body>
+              </ownedComment>
+              <generalization xmi:id="_VXDdcDR7EeWnYOLSrhSJRg" general="_VXC2ZDR7EeWnYOLSrhSJRg"/>
+              <ownedAttribute xmi:id="_VXHH0DR7EeWnYOLSrhSJRg" name="javaxInjectProviderClass" visibility="private" isStatic="true" type="_VXDdcTR7EeWnYOLSrhSJRg"/>
+              <ownedAttribute xmi:id="_VXOckDR7EeWnYOLSrhSJRg" name="serializableFactories" visibility="private" isStatic="true" type="_VXKyMDR7EeWnYOLSrhSJRg" isReadOnly="true">
+                <ownedComment xmi:id="_VXSG8DR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Map from serialized id to factory instance 
+ */
+</body>
+                </ownedComment>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VXVxUDR7EeWnYOLSrhSJRg" name="serializationId" visibility="private">
+                <ownedComment xmi:id="_VXZbsDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Optional id for this factory, for serialization purposes 
+ */
+</body>
+                </ownedComment>
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VXdGEDR7EeWnYOLSrhSJRg" name="allowBeanDefinitionOverriding" visibility="private">
+                <ownedComment xmi:id="_VXgwcDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Whether to allow re-registration of a different definition with the same name 
+ */
+</body>
+                </ownedComment>
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_VXdGETR7EeWnYOLSrhSJRg" value="true"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VXka0DR7EeWnYOLSrhSJRg" name="allowEagerClassLoading" visibility="private">
+                <ownedComment xmi:id="_VXoFMDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Whether to allow eager class loading even for lazy-init beans 
+ */
+</body>
+                </ownedComment>
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_VXka0TR7EeWnYOLSrhSJRg" value="true"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VXsWoDR7EeWnYOLSrhSJRg" name="autowireCandidateResolver" visibility="private" type="_VXosQDR7EeWnYOLSrhSJRg">
+                <ownedComment xmi:id="_VXwBADR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Resolver to use for checking if a bean definition is an autowire candidate 
+ */
+</body>
+                </ownedComment>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VX0ScDR7EeWnYOLSrhSJRg" name="resolvableDependencies" visibility="private" type="_VXwBATR7EeWnYOLSrhSJRg" isReadOnly="true">
+                <ownedComment xmi:id="_VX380DR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Map from dependency type to corresponding autowired value 
+ */
+</body>
+                </ownedComment>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VX7nMDR7EeWnYOLSrhSJRg" name="beanDefinitionMap" visibility="private" type="_VX380TR7EeWnYOLSrhSJRg" isReadOnly="true">
+                <ownedComment xmi:id="_VX_RkDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Map of bean definition objects, keyed by bean name 
+ */
+</body>
+                </ownedComment>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VYC78DR7EeWnYOLSrhSJRg" name="allBeanNamesByType" visibility="private" type="_VX_4oDR7EeWnYOLSrhSJRg" isReadOnly="true">
+                <ownedComment xmi:id="_VYGmUDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Map of singleton and non-singleton bean names, keyed by dependency type 
+ */
+</body>
+                </ownedComment>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VYKQsDR7EeWnYOLSrhSJRg" name="singletonBeanNamesByType" visibility="private" type="_VX_4oDR7EeWnYOLSrhSJRg" isReadOnly="true">
+                <ownedComment xmi:id="_VYN7EDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Map of singleton-only bean names, keyed by dependency type 
+ */
+</body>
+                </ownedComment>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VYRlcDR7EeWnYOLSrhSJRg" name="beanDefinitionNames" visibility="private" type="_VYN7ETR7EeWnYOLSrhSJRg" isReadOnly="true">
+                <ownedComment xmi:id="_VYVP0DR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * List of bean definition names, in registration order 
+ */
+</body>
+                </ownedComment>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VYYTIDR7EeWnYOLSrhSJRg" name="configurationFrozen" visibility="private">
+                <ownedComment xmi:id="_VYb9gDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Whether bean definition metadata may be cached for all beans 
+ */
+</body>
+                </ownedComment>
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_VYYTITR7EeWnYOLSrhSJRg"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_VYfn4DR7EeWnYOLSrhSJRg" name="frozenBeanDefinitionNames" visibility="private">
+                <ownedComment xmi:id="_VYjSQDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Cached array of bean definition names in case of frozen configuration 
+ */
+</body>
+                </ownedComment>
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VYfn4TR7EeWnYOLSrhSJRg" value="*"/>
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VYfn4jR7EeWnYOLSrhSJRg"/>
+              </ownedAttribute>
+              <interfaceRealization xmi:id="_VWLTsTR7EeWnYOLSrhSJRg" name="ConfigurableListableBeanFactory" supplier="_VWLTsDR7EeWnYOLSrhSJRg" client="_VVNqYDR7EeWnYOLSrhSJRg" contract="_VWLTsDR7EeWnYOLSrhSJRg"/>
+              <interfaceRealization xmi:id="_VXC2YTR7EeWnYOLSrhSJRg" name="BeanDefinitionRegistry" supplier="_VXC2YDR7EeWnYOLSrhSJRg" client="_VVNqYDR7EeWnYOLSrhSJRg" contract="_VXC2YDR7EeWnYOLSrhSJRg"/>
+              <interfaceRealization xmi:id="_VXC2YzR7EeWnYOLSrhSJRg" name="Serializable" supplier="_VXC2YjR7EeWnYOLSrhSJRg" client="_VVNqYDR7EeWnYOLSrhSJRg" contract="_VXC2YjR7EeWnYOLSrhSJRg"/>
+              <nestedClassifier xmi:type="uml:Class" xmi:id="_VVRUwTR7EeWnYOLSrhSJRg" name="SerializedBeanFactoryReference" visibility="private" clientDependency="_VbX8wDR7EeWnYOLSrhSJRg">
+                <ownedComment xmi:id="_VVU_IDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Minimal id reference to the factory.
+ * Resolved to the actual factory instance on deserialization.
+ */
+</body>
+                </ownedComment>
+                <ownedAttribute xmi:id="_VbbAEDR7EeWnYOLSrhSJRg" name="id" visibility="private" isReadOnly="true">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedAttribute>
+                <interfaceRealization xmi:id="_VbX8wDR7EeWnYOLSrhSJRg" name="Serializable" supplier="_VXC2YjR7EeWnYOLSrhSJRg" client="_VVRUwTR7EeWnYOLSrhSJRg" contract="_VXC2YjR7EeWnYOLSrhSJRg"/>
+                <ownedOperation xmi:id="_VbfRgDR7EeWnYOLSrhSJRg" name="readResolve" visibility="private">
+                  <ownedParameter xmi:id="_VbfRgTR7EeWnYOLSrhSJRg" name="return" type="_VZyBUTR7EeWnYOLSrhSJRg" direction="return"/>
+                </ownedOperation>
+              </nestedClassifier>
+              <nestedClassifier xmi:type="uml:Class" xmi:id="_VVVmMDR7EeWnYOLSrhSJRg" name="DependencyObjectFactory" visibility="private" clientDependency="_VbiU0DR7EeWnYOLSrhSJRg">
+                <ownedComment xmi:id="_VVZ3oDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Serializable ObjectFactory for lazy resolution of a dependency.
+ */
+</body>
+                </ownedComment>
+                <ownedAttribute xmi:id="_Vbl_MDR7EeWnYOLSrhSJRg" name="descriptor" visibility="private" type="_VV8qNjR7EeWnYOLSrhSJRg" isReadOnly="true"/>
+                <ownedAttribute xmi:id="_VbsF0DR7EeWnYOLSrhSJRg" name="beanName" visibility="private" isReadOnly="true">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedAttribute>
+                <interfaceRealization xmi:id="_VbiU0DR7EeWnYOLSrhSJRg" name="Serializable" supplier="_VXC2YjR7EeWnYOLSrhSJRg" client="_VVVmMDR7EeWnYOLSrhSJRg" contract="_VXC2YjR7EeWnYOLSrhSJRg"/>
+                <ownedOperation xmi:id="_VbvwMDR7EeWnYOLSrhSJRg" name="getObject" visibility="public">
+                  <ownedParameter xmi:id="_VbvwMTR7EeWnYOLSrhSJRg" name="return" type="_VZyBUTR7EeWnYOLSrhSJRg" direction="return"/>
+                </ownedOperation>
+              </nestedClassifier>
+              <nestedClassifier xmi:type="uml:Class" xmi:id="_VVZ3oTR7EeWnYOLSrhSJRg" name="DependencyProvider" visibility="private">
+                <ownedComment xmi:id="_VVdiADR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Serializable ObjectFactory for lazy resolution of a dependency.
+ */
+</body>
+                </ownedComment>
+                <ownedOperation xmi:id="_VbzakDR7EeWnYOLSrhSJRg" name="get" visibility="public">
+                  <ownedParameter xmi:id="_VbzakTR7EeWnYOLSrhSJRg" name="return" type="_VZyBUTR7EeWnYOLSrhSJRg" direction="return"/>
+                </ownedOperation>
+              </nestedClassifier>
+              <nestedClassifier xmi:type="uml:Class" xmi:id="_VVdiATR7EeWnYOLSrhSJRg" name="DependencyProviderFactory" visibility="private">
+                <ownedComment xmi:id="_VVhMYDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Separate inner class for avoiding a hard dependency on the {@code javax.inject} API.
+ */
+</body>
+                </ownedComment>
+                <ownedOperation xmi:id="_Vb3E8DR7EeWnYOLSrhSJRg" name="createDependencyProvider" visibility="public">
+                  <ownedParameter xmi:id="_Vb3E8TR7EeWnYOLSrhSJRg" name="descriptor" type="_VV8qNjR7EeWnYOLSrhSJRg"/>
+                  <ownedParameter xmi:id="_Vb3E8jR7EeWnYOLSrhSJRg" name="beanName">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                  </ownedParameter>
+                  <ownedParameter xmi:id="_Vb3E8zR7EeWnYOLSrhSJRg" name="return" type="_VZyBUTR7EeWnYOLSrhSJRg" direction="return"/>
+                </ownedOperation>
+              </nestedClassifier>
+              <ownedOperation xmi:id="_VYjSQTR7EeWnYOLSrhSJRg" name="setSerializationId" visibility="public">
+                <ownedComment xmi:id="_VYnjsDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Specify an id for serialization purposes, allowing this BeanFactory to be
+ * deserialized from this id back into the BeanFactory object, if needed.
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_VYj5UDR7EeWnYOLSrhSJRg" name="serializationId">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VYnjsTR7EeWnYOLSrhSJRg" name="setAllowBeanDefinitionOverriding" visibility="public">
+                <ownedComment xmi:id="_VYrOEDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Set whether it should be allowed to override bean definitions by registering
+ * a different definition with the same name, automatically replacing the former.
+ * If not, an exception will be thrown. This also applies to overriding aliases.
+ * &lt;p>Default is &quot;true&quot;.
+ * @see #registerBeanDefinition
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_VYnjsjR7EeWnYOLSrhSJRg" name="allowBeanDefinitionOverriding">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VYr1IDR7EeWnYOLSrhSJRg" name="setAllowEagerClassLoading" visibility="public">
+                <ownedComment xmi:id="_VYvfgDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Set whether the factory is allowed to eagerly load bean classes
+ * even for bean definitions that are marked as &quot;lazy-init&quot;.
+ * &lt;p>Default is &quot;true&quot;. Turn this flag off to suppress class loading
+ * for lazy-init beans unless such a bean is explicitly requested.
+ * In particular, by-type lookups will then simply ignore bean definitions
+ * without resolved class name, instead of loading the bean classes on
+ * demand just to perform a type check.
+ * @see AbstractBeanDefinition#setLazyInit
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_VYr1ITR7EeWnYOLSrhSJRg" name="allowEagerClassLoading">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VYvfgTR7EeWnYOLSrhSJRg" name="setAutowireCandidateResolver" visibility="public">
+                <ownedComment xmi:id="_VYzJ4DR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Set a custom autowire candidate resolver for this BeanFactory to use
+ * when deciding whether a bean definition should be considered as a
+ * candidate for autowiring.
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_VYvfgjR7EeWnYOLSrhSJRg" name="autowireCandidateResolver" type="_VXosQDR7EeWnYOLSrhSJRg"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VYzJ4TR7EeWnYOLSrhSJRg" name="getAutowireCandidateResolver" visibility="public">
+                <ownedComment xmi:id="_VY20QDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Return the autowire candidate resolver for this BeanFactory (never {@code null}).
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_VYzw8DR7EeWnYOLSrhSJRg" name="return" type="_VXosQDR7EeWnYOLSrhSJRg" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VY3bUDR7EeWnYOLSrhSJRg" name="copyConfigurationFrom" visibility="public">
+                <ownedParameter xmi:id="_VY3bUTR7EeWnYOLSrhSJRg" name="otherFactory" type="_VV8qNDR7EeWnYOLSrhSJRg"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VY7swDR7EeWnYOLSrhSJRg" name="getBean" visibility="public">
+                <ownedParameter xmi:id="_VY7swTR7EeWnYOLSrhSJRg" name="requiredType" type="_VY7FsDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VY7swjR7EeWnYOLSrhSJRg" name="return" type="_VY7sxTR7EeWnYOLSrhSJRg" direction="return"/>
+                <ownedTemplateSignature xmi:id="_VY7swzR7EeWnYOLSrhSJRg" parameter="_VY7sxDR7EeWnYOLSrhSJRg">
+                  <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_VY7sxDR7EeWnYOLSrhSJRg" parameteredElement="_VY7sxTR7EeWnYOLSrhSJRg">
+                    <ownedParameteredElement xmi:type="uml:Class" xmi:id="_VY7sxTR7EeWnYOLSrhSJRg" name="T" templateParameter="_VY7sxDR7EeWnYOLSrhSJRg"/>
+                  </ownedParameter>
+                </ownedTemplateSignature>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VY_XIDR7EeWnYOLSrhSJRg" name="containsBeanDefinition" visibility="public">
+                <ownedParameter xmi:id="_VY_XITR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VY_XIjR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZDBgTR7EeWnYOLSrhSJRg" name="getBeanDefinitionCount" visibility="public">
+                <ownedParameter xmi:id="_VZDBgjR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZGr4DR7EeWnYOLSrhSJRg" name="getBeanDefinitionNames" visibility="public">
+                <ownedParameter xmi:id="_VZGr4TR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZKWQDR7EeWnYOLSrhSJRg" name="getBeanNamesForType" visibility="public">
+                <ownedParameter xmi:id="_VZKWQTR7EeWnYOLSrhSJRg" name="type" type="_VY7FsDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VZKWQjR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZOnsDR7EeWnYOLSrhSJRg" name="getBeanNamesForType" visibility="public">
+                <ownedParameter xmi:id="_VZOnsTR7EeWnYOLSrhSJRg" name="type" type="_VY7FsDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VZOnsjR7EeWnYOLSrhSJRg" name="includeNonSingletons">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VZOnszR7EeWnYOLSrhSJRg" name="allowEagerInit">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VZOntDR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZa08DR7EeWnYOLSrhSJRg" name="doGetBeanNamesForType" visibility="private">
+                <ownedParameter xmi:id="_VZa08TR7EeWnYOLSrhSJRg" name="type" type="_VY7FsDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VZa08jR7EeWnYOLSrhSJRg" name="includeNonSingletons">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VZa08zR7EeWnYOLSrhSJRg" name="allowEagerInit">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VZa09DR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZefUDR7EeWnYOLSrhSJRg" name="requiresEagerInitForType" visibility="private">
+                <ownedComment xmi:id="_VZiJsDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Check whether the specified bean would need to be eagerly initialized
+ * in order to determine its type.
+ * @param factoryBeanName a factory-bean reference that the bean definition
+ * defines a factory method for
+ * @return whether eager initialization is necessary
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_VZefUTR7EeWnYOLSrhSJRg" name="factoryBeanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VZefUjR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZiwwDR7EeWnYOLSrhSJRg" name="getBeansOfType" visibility="public">
+                <ownedParameter xmi:id="_VZiwwTR7EeWnYOLSrhSJRg" name="type" type="_VY7FsDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VZiwwjR7EeWnYOLSrhSJRg" name="return" type="_VV61CTR7EeWnYOLSrhSJRg" direction="return"/>
+                <ownedTemplateSignature xmi:id="_VZiwwzR7EeWnYOLSrhSJRg" parameter="_VZiwxDR7EeWnYOLSrhSJRg">
+                  <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_VZiwxDR7EeWnYOLSrhSJRg" parameteredElement="_VZiwxTR7EeWnYOLSrhSJRg">
+                    <ownedParameteredElement xmi:type="uml:Class" xmi:id="_VZiwxTR7EeWnYOLSrhSJRg" name="T" templateParameter="_VZiwxDR7EeWnYOLSrhSJRg"/>
+                  </ownedParameter>
+                </ownedTemplateSignature>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZmbIDR7EeWnYOLSrhSJRg" name="getBeansOfType" visibility="public">
+                <ownedParameter xmi:id="_VZmbITR7EeWnYOLSrhSJRg" name="type" type="_VY7FsDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VZmbIjR7EeWnYOLSrhSJRg" name="includeNonSingletons">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VZmbIzR7EeWnYOLSrhSJRg" name="allowEagerInit">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VZmbJDR7EeWnYOLSrhSJRg" name="return" type="_VV61CTR7EeWnYOLSrhSJRg" direction="return"/>
+                <ownedTemplateSignature xmi:id="_VZmbJTR7EeWnYOLSrhSJRg" parameter="_VZmbJjR7EeWnYOLSrhSJRg">
+                  <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_VZmbJjR7EeWnYOLSrhSJRg" parameteredElement="_VZmbJzR7EeWnYOLSrhSJRg">
+                    <ownedParameteredElement xmi:type="uml:Class" xmi:id="_VZmbJzR7EeWnYOLSrhSJRg" name="T" templateParameter="_VZmbJjR7EeWnYOLSrhSJRg"/>
+                  </ownedParameter>
+                </ownedTemplateSignature>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZqskDR7EeWnYOLSrhSJRg" name="getBeansWithAnnotation" visibility="public">
+                <ownedParameter xmi:id="_VZqskTR7EeWnYOLSrhSJRg" name="annotationType" type="_VY7FsDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VZqskjR7EeWnYOLSrhSJRg" name="return" type="_VV61CTR7EeWnYOLSrhSJRg" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZuW8DR7EeWnYOLSrhSJRg" name="findAnnotationOnBean" visibility="public">
+                <ownedComment xmi:id="_VZyBUDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Find a {@link Annotation} of {@code annotationType} on the specified
+ * bean, traversing its interfaces and super classes if no annotation can be
+ * found on the given class itself, as well as checking its raw bean class
+ * if not found on the exposed bean reference (e.g. in case of a proxy).
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_VZuW8TR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VZuW8jR7EeWnYOLSrhSJRg" name="annotationType" type="_VY7FsDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VZuW8zR7EeWnYOLSrhSJRg" name="return" type="_VZuW9jR7EeWnYOLSrhSJRg" direction="return"/>
+                <ownedTemplateSignature xmi:id="_VZuW9DR7EeWnYOLSrhSJRg" parameter="_VZuW9TR7EeWnYOLSrhSJRg">
+                  <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_VZuW9TR7EeWnYOLSrhSJRg" parameteredElement="_VZuW9jR7EeWnYOLSrhSJRg">
+                    <ownedParameteredElement xmi:type="uml:Class" xmi:id="_VZuW9jR7EeWnYOLSrhSJRg" name="A" templateParameter="_VZuW9TR7EeWnYOLSrhSJRg"/>
+                  </ownedParameter>
+                </ownedTemplateSignature>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZyoYDR7EeWnYOLSrhSJRg" name="registerResolvableDependency" visibility="public">
+                <ownedParameter xmi:id="_VZyoYTR7EeWnYOLSrhSJRg" name="dependencyType" type="_VY7FsDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VZyoYjR7EeWnYOLSrhSJRg" name="autowiredValue" type="_VZyBUTR7EeWnYOLSrhSJRg"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZ250DR7EeWnYOLSrhSJRg" name="isAutowireCandidate" visibility="public">
+                <ownedParameter xmi:id="_VZ250TR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VZ250jR7EeWnYOLSrhSJRg" name="descriptor" type="_VV8qNjR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VZ250zR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZ7yUDR7EeWnYOLSrhSJRg" name="isAutowireCandidate" visibility="protected">
+                <ownedComment xmi:id="_VZ-1oDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Determine whether the specified bean definition qualifies as an autowire candidate,
+ * to be injected into other beans which declare a dependency of matching type.
+ * @param beanName the name of the bean definition to check
+ * @param mbd the merged bean definition to check
+ * @param descriptor the descriptor of the dependency to resolve
+ * @return whether the bean should be considered as autowire candidate
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_VZ7yUTR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VZ7yUjR7EeWnYOLSrhSJRg" name="mbd" type="_VZ7LQDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VZ7yUzR7EeWnYOLSrhSJRg" name="descriptor" type="_VV8qNjR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VZ7yVDR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VZ_csDR7EeWnYOLSrhSJRg" name="getBeanDefinition" visibility="public">
+                <ownedParameter xmi:id="_VZ_csTR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VZ_csjR7EeWnYOLSrhSJRg" name="return" type="_VV8qMjR7EeWnYOLSrhSJRg" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VaDuIDR7EeWnYOLSrhSJRg" name="freezeConfiguration" visibility="public"/>
+              <ownedOperation xmi:id="_VaHYgDR7EeWnYOLSrhSJRg" name="isConfigurationFrozen" visibility="public">
+                <ownedParameter xmi:id="_VaHYgTR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VaLC4DR7EeWnYOLSrhSJRg" name="isBeanEligibleForMetadataCaching" visibility="protected">
+                <ownedComment xmi:id="_VaOtQDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Considers all beans as eligible for metadata caching
+ * if the factory's configuration has been marked as frozen.
+ * @see #freezeConfiguration()
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_VaLC4TR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VaLC4jR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VaPUUDR7EeWnYOLSrhSJRg" name="preInstantiateSingletons" visibility="public"/>
+              <ownedOperation xmi:id="_VaS-sDR7EeWnYOLSrhSJRg" name="registerBeanDefinition" visibility="public">
+                <ownedParameter xmi:id="_VaS-sTR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VaS-sjR7EeWnYOLSrhSJRg" name="beanDefinition" type="_VV8qMjR7EeWnYOLSrhSJRg"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VaWpEDR7EeWnYOLSrhSJRg" name="removeBeanDefinition" visibility="public">
+                <ownedParameter xmi:id="_VaWpETR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_Vaa6gDR7EeWnYOLSrhSJRg" name="resetBeanDefinition" visibility="protected">
+                <ownedComment xmi:id="_Vad90DR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Reset all bean definition caches for the given bean,
+ * including the caches of beans that are derived from it.
+ * @param beanName the name of the bean to reset
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_Vaa6gTR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_Vaek4DR7EeWnYOLSrhSJRg" name="allowAliasOverriding" visibility="protected">
+                <ownedComment xmi:id="_VaiPQDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Only allows alias overriding if bean definition overriding is allowed.
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_Vaek4TR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_Vai2UDR7EeWnYOLSrhSJRg" name="registerSingleton" visibility="public">
+                <ownedParameter xmi:id="_Vai2UTR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_Vai2UjR7EeWnYOLSrhSJRg" name="singletonObject" type="_VZyBUTR7EeWnYOLSrhSJRg"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VamgsDR7EeWnYOLSrhSJRg" name="destroySingleton" visibility="public">
+                <ownedParameter xmi:id="_VamgsTR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VaqLEDR7EeWnYOLSrhSJRg" name="clearByTypeCache" visibility="private">
+                <ownedComment xmi:id="_Vat1cDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Remove any assumptions about by-type mappings.
+ */
+</body>
+                </ownedComment>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VaucgDR7EeWnYOLSrhSJRg" name="resolveDependency" visibility="public">
+                <ownedParameter xmi:id="_VaucgTR7EeWnYOLSrhSJRg" name="descriptor" type="_VV8qNjR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VaucgjR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VaucgzR7EeWnYOLSrhSJRg" name="autowiredBeanNames" type="_VV7cEDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VauchDR7EeWnYOLSrhSJRg" name="typeConverter" type="_VV7cGDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VauchTR7EeWnYOLSrhSJRg" name="return" type="_VZyBUTR7EeWnYOLSrhSJRg" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VazVADR7EeWnYOLSrhSJRg" name="doResolveDependency" visibility="protected">
+                <ownedParameter xmi:id="_VazVATR7EeWnYOLSrhSJRg" name="descriptor" type="_VV8qNjR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VazVAjR7EeWnYOLSrhSJRg" name="type" type="_VY7FsDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VazVAzR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VazVBDR7EeWnYOLSrhSJRg" name="autowiredBeanNames" type="_VV7cEDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VazVBTR7EeWnYOLSrhSJRg" name="typeConverter" type="_VV7cGDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VazVBjR7EeWnYOLSrhSJRg" name="return" type="_VZyBUTR7EeWnYOLSrhSJRg" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_Va3mcDR7EeWnYOLSrhSJRg" name="findAutowireCandidates" visibility="protected">
+                <ownedComment xmi:id="_Va7Q0DR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Find bean instances that match the required type.
+ * Called during autowiring for the specified bean.
+ * @param beanName the name of the bean that is about to be wired
+ * @param requiredType the actual type of bean to look for
+ * (may be an array component type or collection element type)
+ * @param descriptor the descriptor of the dependency to resolve
+ * @return a Map of candidate names and candidate instances that match
+ * the required type (never {@code null})
+ * @throws BeansException in case of errors
+ * @see #autowireByType
+ * @see #autowireConstructor
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_Va3mcTR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_Va3mcjR7EeWnYOLSrhSJRg" name="requiredType" type="_VY7FsDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_Va3mczR7EeWnYOLSrhSJRg" name="descriptor" type="_VV8qNjR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_Va3mdDR7EeWnYOLSrhSJRg" name="return" type="_VV61CTR7EeWnYOLSrhSJRg" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_Va8e8DR7EeWnYOLSrhSJRg" name="determinePrimaryCandidate" visibility="protected">
+                <ownedComment xmi:id="_Va_iQDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Determine the primary autowire candidate in the given set of beans.
+ * @param candidateBeans a Map of candidate names and candidate instances
+ * that match the required type, as returned by {@link #findAutowireCandidates}
+ * @param descriptor the target dependency to match against
+ * @return the name of the primary candidate, or {@code null} if none found
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_Va8e8TR7EeWnYOLSrhSJRg" name="candidateBeans" type="_VV61CTR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_Va8e8jR7EeWnYOLSrhSJRg" name="descriptor" type="_VV8qNjR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_Va8e8zR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VbAJUDR7EeWnYOLSrhSJRg" name="isPrimary" visibility="protected">
+                <ownedComment xmi:id="_VbDzsDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Return whether the bean definition for the given bean name has been
+ * marked as a primary bean.
+ * @param beanName the name of the bean
+ * @param beanInstance the corresponding bean instance
+ * @return whether the given bean qualifies as primary
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_VbAJUTR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VbAJUjR7EeWnYOLSrhSJRg" name="beanInstance" type="_VZyBUTR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VbAJUzR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VbEawDR7EeWnYOLSrhSJRg" name="matchesBeanName" visibility="protected">
+                <ownedComment xmi:id="_VbIFIDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Determine whether the given candidate name matches the bean name or the aliases
+ * stored in this bean definition.
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_VbEawTR7EeWnYOLSrhSJRg" name="beanName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VbEawjR7EeWnYOLSrhSJRg" name="candidateName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VbEawzR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VbIsMDR7EeWnYOLSrhSJRg" name="raiseNoSuchBeanDefinitionException" visibility="private">
+                <ownedComment xmi:id="_VbMWkDR7EeWnYOLSrhSJRg">
+                  <body>/** 
+ * Raise a NoSuchBeanDefinitionException for an unresolvable dependency.
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_VbIsMTR7EeWnYOLSrhSJRg" name="type" type="_VY7FsDR7EeWnYOLSrhSJRg"/>
+                <ownedParameter xmi:id="_VbIsMjR7EeWnYOLSrhSJRg" name="dependencyDescription">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_VbIsMzR7EeWnYOLSrhSJRg" name="descriptor" type="_VV8qNjR7EeWnYOLSrhSJRg"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VbM9oDR7EeWnYOLSrhSJRg" name="toString" visibility="public">
+                <ownedParameter xmi:id="_VbM9oTR7EeWnYOLSrhSJRg" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VbQoADR7EeWnYOLSrhSJRg" name="readObject" visibility="private">
+                <ownedParameter xmi:id="_VbQoATR7EeWnYOLSrhSJRg" name="ois" type="_VV6N8DR7EeWnYOLSrhSJRg"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_VbUSYDR7EeWnYOLSrhSJRg" name="writeReplace" visibility="protected">
+                <ownedParameter xmi:id="_VbUSYTR7EeWnYOLSrhSJRg" name="return" type="_VZyBUTR7EeWnYOLSrhSJRg" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Interface" xmi:id="_VWLTsDR7EeWnYOLSrhSJRg" name="ConfigurableListableBeanFactory"/>
+            <packagedElement xmi:type="uml:Interface" xmi:id="_VXC2YDR7EeWnYOLSrhSJRg" name="BeanDefinitionRegistry"/>
+            <packagedElement xmi:type="uml:Interface" xmi:id="_VXC2YjR7EeWnYOLSrhSJRg" name="Serializable"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_VXC2ZDR7EeWnYOLSrhSJRg" name="AbstractAutowireCapableBeanFactory"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_VV7cGTR7EeWnYOLSrhSJRg" name="BeanCreationException"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_VV7cGjR7EeWnYOLSrhSJRg" name="BeanCurrentlyInCreationException"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_VV8DIDR7EeWnYOLSrhSJRg" name="BeanDefinitionStoreException"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_VV8DITR7EeWnYOLSrhSJRg" name="BeanFactory"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_VV8DIjR7EeWnYOLSrhSJRg" name="BeanFactoryAware"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_VV8DIzR7EeWnYOLSrhSJRg" name="BeanFactoryUtils"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_VV8DJDR7EeWnYOLSrhSJRg" name="CannotLoadBeanClassException"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_VV8DJTR7EeWnYOLSrhSJRg" name="FactoryBean"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_VV8DJjR7EeWnYOLSrhSJRg" name="NoSuchBeanDefinitionException"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_VV8DJzR7EeWnYOLSrhSJRg" name="NoUniqueBeanDefinitionException"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_VV8DKDR7EeWnYOLSrhSJRg" name="ObjectFactory"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_VV8qMDR7EeWnYOLSrhSJRg" name="SmartFactoryBean"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_VV8qMTR7EeWnYOLSrhSJRg" name="config">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_VV8qMjR7EeWnYOLSrhSJRg" name="BeanDefinition"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_VV8qMzR7EeWnYOLSrhSJRg" name="BeanDefinitionHolder"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_VV8qNDR7EeWnYOLSrhSJRg" name="ConfigurableBeanFactory"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_VV8qNTR7EeWnYOLSrhSJRg" name="ConfigurableListableBeanFactory"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_VV8qNjR7EeWnYOLSrhSJRg" name="DependencyDescriptor"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_VV7cFjR7EeWnYOLSrhSJRg" name="BeansException"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_VV7cFzR7EeWnYOLSrhSJRg" name="FatalBeanException"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_VV7cGDR7EeWnYOLSrhSJRg" name="TypeConverter"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_VV8qNzR7EeWnYOLSrhSJRg" name="core">
+        <packagedElement xmi:type="uml:Package" xmi:id="_VV8qODR7EeWnYOLSrhSJRg" name="annotation">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_VV9RQDR7EeWnYOLSrhSJRg" name="AnnotationUtils"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_VV9RQTR7EeWnYOLSrhSJRg" name="util">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_VV9RQjR7EeWnYOLSrhSJRg" name="Assert"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_VV9RQzR7EeWnYOLSrhSJRg" name="ClassUtils"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_VV9RRDR7EeWnYOLSrhSJRg" name="ObjectUtils"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_VV9RRTR7EeWnYOLSrhSJRg" name="StringUtils"/>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_VV5m4DR7EeWnYOLSrhSJRg" name="java">
+    <packagedElement xmi:type="uml:Package" xmi:id="_VV5m4TR7EeWnYOLSrhSJRg" name="io">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV5m4jR7EeWnYOLSrhSJRg" name="IOException"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV5m4zR7EeWnYOLSrhSJRg" name="NotSerializableException"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV6N8DR7EeWnYOLSrhSJRg" name="ObjectInputStream"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV6N8TR7EeWnYOLSrhSJRg" name="ObjectStreamException"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV6N8jR7EeWnYOLSrhSJRg" name="Serializable"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_VV6N8zR7EeWnYOLSrhSJRg" name="lang">
+      <packagedElement xmi:type="uml:Package" xmi:id="_VV6N9DR7EeWnYOLSrhSJRg" name="annotation">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_VV6N9TR7EeWnYOLSrhSJRg" name="Annotation"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_VV6N9jR7EeWnYOLSrhSJRg" name="ref">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_VV6N9zR7EeWnYOLSrhSJRg" name="Reference"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_VV6N-DR7EeWnYOLSrhSJRg" name="WeakReference"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_VV6N-TR7EeWnYOLSrhSJRg" name="security">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV61ADR7EeWnYOLSrhSJRg" name="AccessController"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV61ATR7EeWnYOLSrhSJRg" name="PrivilegedAction"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_VV61AjR7EeWnYOLSrhSJRg" name="util">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV61AzR7EeWnYOLSrhSJRg" name="ArrayList"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV61BDR7EeWnYOLSrhSJRg" name="Arrays"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV61BTR7EeWnYOLSrhSJRg" name="Collection"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV61BjR7EeWnYOLSrhSJRg" name="HashMap"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV61BzR7EeWnYOLSrhSJRg" name="LinkedHashMap"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV61CDR7EeWnYOLSrhSJRg" name="List"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV61CTR7EeWnYOLSrhSJRg" name="Map"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV7cEDR7EeWnYOLSrhSJRg" name="Set"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_VV7cETR7EeWnYOLSrhSJRg" name="concurrent">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_VV7cEjR7EeWnYOLSrhSJRg" name="ConcurrentHashMap"/>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_VV7cEzR7EeWnYOLSrhSJRg" name="javax">
+    <packagedElement xmi:type="uml:Package" xmi:id="_VV7cFDR7EeWnYOLSrhSJRg" name="inject">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_VV7cFTR7EeWnYOLSrhSJRg" name="Provider"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_VXDdcTR7EeWnYOLSrhSJRg" name="Class&lt;?>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_VXKyMDR7EeWnYOLSrhSJRg" name="Map&lt;String,Reference&lt;DefaultListableBeanFactory>>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_VXosQDR7EeWnYOLSrhSJRg" name="AutowireCandidateResolver"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_VXwBATR7EeWnYOLSrhSJRg" name="Map&lt;Class&lt;?>,Object>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_VX380TR7EeWnYOLSrhSJRg" name="Map&lt;String,BeanDefinition>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_VX_4oDR7EeWnYOLSrhSJRg" name="Map&lt;Class&lt;?>,String[]>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_VYN7ETR7EeWnYOLSrhSJRg" name="List&lt;String>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_VY7FsDR7EeWnYOLSrhSJRg" name="Class"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_VZyBUTR7EeWnYOLSrhSJRg" name="Object"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_VZ7LQDR7EeWnYOLSrhSJRg" name="RootBeanDefinition"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ZFmy0zR7EeWnYOLSrhSJRg" name="Class&lt;?>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ZFuuoDR7EeWnYOLSrhSJRg" name="Map&lt;String,Reference&lt;DefaultListableBeanFactory>>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ZGLakDR7EeWnYOLSrhSJRg" name="AutowireCandidateResolver"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ZGSIQTR7EeWnYOLSrhSJRg" name="Map&lt;Class&lt;?>,Object>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ZGZdADR7EeWnYOLSrhSJRg" name="Map&lt;String,BeanDefinition>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ZGgKsDR7EeWnYOLSrhSJRg" name="Map&lt;Class&lt;?>,String[]>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ZGs_ADR7EeWnYOLSrhSJRg" name="List&lt;String>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ZHXtYDR7EeWnYOLSrhSJRg" name="Class"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ZMVF4DR7EeWnYOLSrhSJRg" name="Object"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_ZMcaoDR7EeWnYOLSrhSJRg" name="RootBeanDefinition"/>
+</uml:Model>
